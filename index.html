@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Внутренний Авторитет | Архитектура сознания</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#111;-webkit-font-smoothing:antialiased;line-height:1.6}
+
+:root{
+  --white:#FFFFFF;
+  --bg:#FAFBF8;
+  --bg2:#F3F4EF;
+  --sage:#3B7A5A;
+  --sage-dark:#2D5F45;
+  --sage-light:#E8F0EA;
+  --sage-pale:rgba(59,122,90,.06);
+  --gold:#C49A52;
+  --gold-light:#D4AF6E;
+  --rose:#B85C5C;
+  --rose-light:#D47A7A;
+  --text:#111;
+  --text2:#555;
+  --text3:#999;
+  --border:rgba(0,0,0,.06);
+  --shadow:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);
+  --shadow-hover:0 4px 12px rgba(0,0,0,.06),0 20px 48px rgba(0,0,0,.1);
+}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-c{max-width:1200px;margin:0 auto;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:.85rem;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.brand i{font-style:normal;color:var(--sage)}
+.nav-r{display:flex;align-items:center;gap:6px}
+.nav-r a{font-size:.78rem;font-weight:500;color:var(--text2);text-decoration:none;padding:8px 14px;border-radius:8px;transition:.2s}
+.nav-r a:hover{color:var(--text);background:var(--bg)}
+.nav-r .cta{background:var(--sage);color:#fff;font-weight:600;padding:9px 20px;border-radius:10px}
+.nav-r .cta:hover{background:var(--sage-dark)}
+
+.hero{max-width:1200px;margin:0 auto;padding:56px 32px 32px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:100px;background:var(--sage-pale);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);margin-bottom:20px}
+.hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:16px}
+.hero h1 span{color:var(--sage)}
+.hero-sub{font-size:1.05rem;color:var(--text2);max-width:560px;margin:0 auto 12px;line-height:1.7;text-wrap:balance}
+.hero-author{font-size:.88rem;color:var(--text3);margin-bottom:32px}
+.hero-author strong{color:var(--text);font-weight:600}
+
+.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:40px}
+.hero-stat{text-align:center}
+.hero-stat b{display:block;font-size:1.5rem;font-weight:800;color:var(--sage);letter-spacing:-.03em}
+.hero-stat small{font-size:.72rem;color:var(--text3);font-weight:500}
+
+.trust-bar{max-width:1200px;margin:0 auto;padding:0 32px 40px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.trust-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;background:var(--bg2);font-size:.75rem;color:var(--text2);font-weight:500}
+.trust-pill svg{width:14px;height:14px;color:var(--sage)}
+
+.section{max-width:1200px;margin:0 auto;padding:0 32px 80px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-tag{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px}
+.section-tag::before,.section-tag::after{content:'';width:20px;height:1.5px;background:var(--sage);opacity:.4}
+.section-title{font-size:clamp(1.4rem,3vw,1.8rem);font-weight:800;letter-spacing:-.03em;margin-bottom:12px;text-wrap:balance}
+.section-desc{font-size:.92rem;color:var(--text2);max-width:580px;margin:0 auto;line-height:1.7;text-wrap:balance}
+
+/* MYSTERY */
+.mystery-intro{max-width:900px;margin:0 auto;padding:0 32px 40px;text-align:center}
+.mystery-q{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;line-height:1.25;letter-spacing:-.03em;margin-bottom:28px;color:var(--text);text-wrap:balance}
+.mystery-sub{font-size:1.1rem;font-weight:500;color:var(--text2);line-height:1.6;text-wrap:balance;max-width:700px;margin:0 auto}
+.mystery-cards{max-width:800px;margin:0 auto;padding:0 32px 40px;display:flex;flex-direction:column;gap:12px}
+.mystery-card{display:flex;align-items:flex-start;gap:16px;padding:24px 28px;background:#FAFAFA;border-radius:12px;border-left:3px solid var(--rose);transition:all .3s}
+.mystery-card:hover{transform:translateX(6px);background:#F5F5F5}
+.mystery-x{color:var(--rose);font-size:.9rem;font-weight:400;flex-shrink:0;margin-top:3px}
+.mystery-card p{font-size:.95rem;color:#555;line-height:1.7;margin:0;text-wrap:pretty}
+.mystery-card strong{color:var(--text);font-weight:700}
+.mystery-reveal{max-width:800px;margin:0 auto 60px;padding:40px 48px;background:linear-gradient(135deg,var(--sage-light) 0%,#F8FAF8 100%);border-radius:20px;text-align:center}
+.mystery-reveal p{font-size:1rem;color:var(--text2);margin-bottom:12px;line-height:1.8;text-wrap:balance}
+.mystery-reveal p strong{color:var(--text)}
+.mystery-reveal .knows{font-size:1.25rem;font-weight:700;color:var(--sage-dark);margin-top:24px;margin-bottom:0}
+
+/* RECOGNITION */
+.recog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.recog-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px 24px;transition:all .3s;position:relative;overflow:hidden}
+.recog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--rose-light))}
+.recog-card:hover{box-shadow:var(--shadow);transform:translateY(-4px);border-color:transparent}
+.recog-icon{font-size:1.6rem;margin-bottom:12px}
+.recog-card p{font-size:.86rem;color:var(--text2);line-height:1.6;text-wrap:pretty}
+@media(max-width:800px){.recog-grid{grid-template-columns:1fr}}
+
+/* BRAIN */
+.brain-section{background:var(--bg2);padding:80px 32px;margin-bottom:80px}
+.brain-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center}
+.brain-visual{position:relative}
+.brain-svg{width:100%;max-width:420px;margin:0 auto;display:block;filter:drop-shadow(0 20px 40px rgba(59,122,90,.1))}
+.brain-labels{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none}
+.brain-label{position:absolute;display:flex;align-items:center;gap:6px;font-size:.65rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.brain-label .dot{width:8px;height:8px;background:var(--sage);border-radius:50%;box-shadow:0 0 0 3px rgba(59,122,90,.2)}
+.brain-label .line{width:30px;height:1.5px;background:var(--sage);opacity:.5}
+.brain-label .text{padding:4px 10px;background:var(--white);border:1px solid var(--sage);color:var(--sage);border-radius:4px;font-size:.6rem;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.brain-label.right{flex-direction:row-reverse}
+.label-amygdala{top:62%;left:2%}
+.label-hippocampus{top:44%;left:2%}
+.label-thalamus{top:26%;right:2%}
+.label-hypothalamus{top:50%;right:2%}
+.label-cingulate{top:8%;left:50%;transform:translateX(-50%);flex-direction:column}
+.label-cingulate .line{width:1.5px;height:20px}
+.brain-content h3{font-size:1.4rem;font-weight:800;letter-spacing:-.03em;margin-bottom:20px}
+.brain-content h3 span{color:var(--sage)}
+.brain-content p{font-size:.88rem;color:var(--text2);margin-bottom:14px;line-height:1.7;text-wrap:pretty}
+.brain-stats{display:flex;flex-direction:column;gap:14px;margin-top:28px;padding:24px;background:var(--white);border-radius:16px;border:1px solid var(--border)}
+.b-row{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:var(--text2);font-weight:500;margin-bottom:4px}
+.b-row .val{font-weight:700;color:var(--sage)}
+.b-row .neg{color:var(--rose)}
+.b-bar{height:6px;border-radius:3px;background:rgba(0,0,0,.06);overflow:hidden}
+.b-fill{height:100%;border-radius:3px;transition:width 1.2s ease;width:0}
+.b-fill.g{background:linear-gradient(90deg,var(--sage),var(--sage-light))}
+.b-fill.r{background:linear-gradient(90deg,var(--rose),var(--rose-light))}
+.brain-stats.vis .b-fill{width:var(--w)}
+@media(max-width:900px){.brain-inner{grid-template-columns:1fr}.brain-visual{order:-1;margin-bottom:40px}.brain-labels{display:none}}
+
+/* TRANSFORM */
+.transform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.transform-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:32px 24px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.transform-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sage),var(--sage-light))}
+.transform-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
+.transform-from{font-size:.88rem;color:var(--rose);text-decoration:line-through;opacity:.7;margin-bottom:12px}
+.transform-arrow{width:40px;height:40px;background:var(--sage-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;color:var(--sage);font-size:1.2rem;transition:all .3s}
+.transform-card:hover .transform-arrow{background:var(--sage);color:#fff;transform:scale(1.1)}
+.transform-to{font-size:.95rem;font-weight:600;color:var(--text)}
+@media(max-width:700px){.transform-grid{grid-template-columns:1fr}}
+
+/* STEPS */
+.steps-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;position:relative}
+.steps-grid::before{content:'';position:absolute;top:32px;left:60px;right:60px;height:2px;background:linear-gradient(90deg,var(--sage),var(--gold),var(--sage))}
+.step-card{text-align:center;position:relative}
+.step-num{width:64px;height:64px;background:var(--white);border:3px solid var(--sage);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.3rem;font-weight:800;color:var(--sage);position:relative;z-index:2;transition:all .3s}
+.step-card:hover .step-num{background:var(--sage);color:#fff;transform:scale(1.1)}
+.step-title{font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.step-desc{font-size:.72rem;color:var(--text3)}
+@media(max-width:900px){.steps-grid{grid-template-columns:repeat(3,1fr);gap:20px}.steps-grid::before{display:none}}
+@media(max-width:500px){.steps-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* TECHNIQUE SECTION - PREMIUM */
+.technique-section{background:linear-gradient(135deg,#0f1419 0%,#1a2332 50%,#0f1419 100%);padding:100px 32px;margin-bottom:80px;position:relative;overflow:hidden}
+.technique-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 20%,rgba(59,122,90,.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(196,154,82,.1) 0%,transparent 50%)}
+.technique-section::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50m-1 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0' fill='%233B7A5A' fill-opacity='0.03'/%3E%3C/svg%3E")}
+.technique-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.technique-header{text-align:center;margin-bottom:60px}
+.technique-header .section-tag{color:var(--gold);font-size:.72rem;letter-spacing:.16em}
+.technique-header .section-tag::before,.technique-header .section-tag::after{background:var(--gold);width:40px}
+.technique-header h2{color:#fff;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;margin-bottom:20px;letter-spacing:-.03em}
+.technique-header p{color:rgba(255,255,255,.6);font-size:1.05rem;max-width:650px;margin:0 auto;line-height:1.8}
+.technique-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.technique-card{background:linear-gradient(145deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:40px 32px;text-align:center;backdrop-filter:blur(20px);transition:all .4s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden}
+.technique-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent)}
+.technique-card:hover{background:linear-gradient(145deg,rgba(255,255,255,.1) 0%,rgba(255,255,255,.04) 100%);transform:translateY(-8px);border-color:rgba(196,154,82,.3);box-shadow:0 30px 60px rgba(0,0,0,.3),0 0 40px rgba(59,122,90,.1)}
+.technique-icon{width:80px;height:80px;background:linear-gradient(145deg,rgba(59,122,90,.3),rgba(196,154,82,.2));border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:2.2rem;position:relative;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.technique-icon::after{content:'';position:absolute;inset:0;border-radius:20px;border:1px solid rgba(255,255,255,.1)}
+.technique-card h4{color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:12px;letter-spacing:-.02em}
+.technique-card p{color:rgba(255,255,255,.5);font-size:.88rem;line-height:1.7}
+@media(max-width:800px){.technique-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
+
+/* SCIENCE - 2x2 grid */
+.science-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;margin:0 auto}
+.science-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:32px 28px;text-align:center;transition:all .3s}
+.science-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
+.science-icon{width:56px;height:56px;background:var(--sage-light);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.science-icon svg{width:26px;height:26px;color:var(--sage)}
+.science-card h4{font-size:.95rem;font-weight:700;margin-bottom:10px}
+.science-card p{font-size:.82rem;color:var(--text2);margin-bottom:12px;line-height:1.6;text-wrap:balance}
+.science-source{font-size:.72rem;color:var(--sage);font-weight:600}
+@media(max-width:600px){.science-grid{grid-template-columns:1fr}}
+
+/* FREQUENCY SECTION */
+.frequency-section{background:var(--bg);padding:80px 32px}
+.frequency-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.frequency-visual{position:relative}
+.wave-container{background:linear-gradient(135deg,var(--sage-light),#fff);border-radius:20px;padding:40px;position:relative;overflow:hidden}
+.wave-svg{width:100%;height:200px}
+.wave-info{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+.wave-stat{background:#fff;border-radius:12px;padding:16px;text-align:center;border:1px solid var(--border)}
+.wave-stat b{display:block;font-size:1.3rem;font-weight:800;color:var(--sage);margin-bottom:4px}
+.wave-stat small{font-size:.72rem;color:var(--text3)}
+.frequency-content h3{font-size:1.4rem;font-weight:800;margin-bottom:20px}
+.frequency-content h3 span{color:var(--sage)}
+.frequency-content p{font-size:.9rem;color:var(--text2);margin-bottom:14px;line-height:1.7}
+.frequency-list{margin-top:24px}
+.frequency-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.frequency-item:last-child{border-bottom:none}
+.frequency-item svg{width:20px;height:20px;color:var(--sage);flex-shrink:0;margin-top:2px}
+.frequency-item p{font-size:.88rem;color:var(--text2)}
+@media(max-width:900px){.frequency-inner{grid-template-columns:1fr}.frequency-visual{order:-1}}
+
+/* ABOUT */
+.about-box{background:var(--bg);border-radius:20px;padding:48px;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center}
+.about-photo-img{width:180px;height:180px;border-radius:20px;object-fit:cover;box-shadow:0 20px 40px rgba(59,122,90,.15)}
+.about-content h3{font-size:1.3rem;font-weight:800;margin-bottom:6px}
+.about-role{font-size:.82rem;color:var(--sage);font-weight:600;margin-bottom:16px}
+.about-content p{font-size:.88rem;color:var(--text2);margin-bottom:12px;line-height:1.7}
+.about-stats{display:flex;gap:32px;margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
+.about-stat b{display:block;font-size:1.3rem;font-weight:800;color:var(--sage)}
+.about-stat small{font-size:.72rem;color:var(--text3)}
+@media(max-width:700px){.about-box{grid-template-columns:1fr;text-align:center;padding:32px}.about-photo-img{margin:0 auto}.about-stats{justify-content:center}}
+
+/* BENEFITS */
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.benefit-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:28px 20px;text-align:center;transition:all .3s}
+.benefit-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.benefit-icon{font-size:2rem;margin-bottom:12px}
+.benefit-card h4{font-size:.88rem;font-weight:700;margin-bottom:6px}
+.benefit-card p{font-size:.75rem;color:var(--text3)}
+@media(max-width:800px){.benefits-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.benefits-grid{grid-template-columns:1fr}}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;margin:0 auto}
+.pricing-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:40px 32px;position:relative;transition:all .3s;overflow:hidden}
+.pricing-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.pricing-card.basic::before{background:linear-gradient(90deg,var(--sage),var(--sage-light))}
+.pricing-card.vip::before{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.pricing-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-6px)}
+.pricing-card.vip{border:2px solid var(--gold)}
+.pricing-badge{position:absolute;top:16px;right:16px;background:var(--gold);color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:6px}
+.pricing-name{font-size:1.2rem;font-weight:800;margin-bottom:4px}
+.pricing-desc{font-size:.8rem;color:var(--text3);margin-bottom:20px}
+.pricing-price{font-size:2.2rem;font-weight:800;margin-bottom:4px;letter-spacing:-.03em}
+.pricing-price small{font-size:.85rem;font-weight:500;color:var(--text3)}
+.pricing-period{font-size:.78rem;color:var(--text3);margin-bottom:28px}
+.pricing-features{margin-bottom:28px}
+.pricing-feature{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.84rem;color:var(--text2)}
+.pricing-feature:last-child{border-bottom:none}
+.pricing-feature svg{width:16px;height:16px;color:var(--sage);flex-shrink:0;margin-top:2px}
+.pricing-feature strong{color:var(--text);font-weight:600}
+.btn-primary{display:block;width:100%;padding:15px;text-align:center;background:var(--sage);color:#fff;text-decoration:none;font-weight:700;font-size:.88rem;border-radius:12px;transition:all .25s}
+.btn-primary:hover{background:var(--sage-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(59,122,90,.25)}
+.btn-gold{background:var(--gold)}
+.btn-gold:hover{background:#B8903D;box-shadow:0 8px 24px rgba(196,154,82,.3)}
+@media(max-width:700px){.pricing-grid{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq-section{max-width:800px;margin:0 auto;padding:0 32px 80px}
+.faq-grid{display:grid;gap:8px}
+.fq{border:1px solid var(--border);border-radius:12px;background:var(--white);overflow:hidden;transition:all .2s}
+.fq:hover{border-color:var(--sage)}
+.fq-q{width:100%;background:none;border:none;padding:20px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;font-size:.88rem;color:var(--text);font-weight:600;text-align:left}
+.fq-q svg{width:18px;height:18px;color:var(--text3);transition:transform .3s;flex-shrink:0}
+.fq.open .fq-q svg{transform:rotate(45deg);color:var(--sage)}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.fq.open .fq-a{max-height:300px}
+.fq-a p{padding:0 24px 20px;font-size:.84rem;color:var(--text2);line-height:1.7}
+
+/* CTA */
+.cta-section{background:var(--sage);padding:80px 32px;text-align:center}
+.cta-section h2{color:#fff;font-size:1.5rem;font-weight:800;margin-bottom:12px}
+.cta-section p{color:rgba(255,255,255,.8);font-size:.95rem;margin-bottom:32px}
+.btn-large{display:inline-flex;align-items:center;gap:10px;padding:18px 48px;background:#fff;color:var(--sage);text-decoration:none;font-weight:700;font-size:.95rem;border-radius:14px;transition:all .25s;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.btn-large:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+
+footer{border-top:1px solid var(--border);padding:32px;text-align:center}
+.ft-links{display:flex;justify-content:center;gap:24px;margin-bottom:12px}
+.ft-links a{font-size:.78rem;color:var(--text3);text-decoration:none;font-weight:500;transition:.2s}
+.ft-links a:hover{color:var(--sage)}
+.ft-copy{font-size:.68rem;color:var(--text3);opacity:.7}
+
+.reveal{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.22,1,.36,1)}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}
+
+@media(max-width:768px){
+  .nav-r a:not(.cta){display:none}
+  .section{padding:0 20px 60px}
+  .hero{padding:40px 20px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="nav-c">
+  <a href="#" class="brand"><i>●</i> Архитектура сознания</a>
+  <div class="nav-r">
+    <a href="#program">Программа</a>
+    <a href="#author">Автор</a>
+    <a href="#pricing">Тарифы</a>
+    <a href="#pricing" class="cta">Записаться</a>
+  </div>
+</div></nav>
+
+<div class="hero">
+  <div class="hero-badge">Старт 22&nbsp;февраля</div>
+  <h1>Внутренний <span>Авторитет</span></h1>
+  <p class="hero-sub">Программа для тех, кто устал спрашивать чужое мнение перед каждым решением</p>
+  <p class="hero-author">Автор — <strong>Дарья Ростовцева</strong></p>
+  <div class="hero-stats">
+    <div class="hero-stat"><b>800+</b><small>участников программ</small></div>
+    <div class="hero-stat"><b>92%</b><small>отмечают результат</small></div>
+    <div class="hero-stat"><b>10+</b><small>лет практики</small></div>
+  </div>
+</div>
+
+<div class="trust-bar">
+  <div class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Научная база</div>
+  <div class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Вечный доступ</div>
+  <div class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Закрытый чат</div>
+  <div class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Безопасная оплата</div>
+</div>
+
+<!-- MYSTERY -->
+<div class="mystery-intro reveal">
+  <p class="mystery-q">Почему одни люди легко принимают решения, а&nbsp;другие годами ходят по&nbsp;кругу сомнений?</p>
+  <p class="mystery-sub">Почему одни доверяют себе и&nbsp;действуют, а&nbsp;другие спрашивают всех вокруг&nbsp;— и&nbsp;всё равно не&nbsp;уверены?</p>
+</div>
+
+<div class="mystery-cards">
+  <div class="mystery-card reveal">
+    <span class="mystery-x">✕</span>
+    <p><strong>Это не&nbsp;вопрос уверенности.</strong> Вы&nbsp;можете выглядеть уверенно, говорить уверенно, но&nbsp;внутри всё равно сомневаться в&nbsp;каждом шаге</p>
+  </div>
+  <div class="mystery-card reveal">
+    <span class="mystery-x">✕</span>
+    <p><strong>Это не&nbsp;вопрос опыта.</strong> Вы&nbsp;можете иметь три образования и&nbsp;20&nbsp;лет в&nbsp;профессии&nbsp;— и&nbsp;всё равно не&nbsp;знать, чего хотите на&nbsp;самом деле</p>
+  </div>
+  <div class="mystery-card reveal">
+    <span class="mystery-x">✕</span>
+    <p><strong>Это не&nbsp;вопрос информации.</strong> Вы&nbsp;можете прочитать 100&nbsp;книг по&nbsp;психологии&nbsp;— и&nbsp;всё равно спрашивать маму, стоит&nbsp;ли менять работу</p>
+  </div>
+  <div class="mystery-card reveal">
+    <span class="mystery-x">✕</span>
+    <p><strong>Это не&nbsp;вопрос терапии.</strong> Вы&nbsp;можете годами ходить к&nbsp;психологу&nbsp;— и&nbsp;всё равно не&nbsp;слышать себя</p>
+  </div>
+  <div class="mystery-card reveal">
+    <span class="mystery-x">✕</span>
+    <p><strong>Это не&nbsp;вопрос силы воли.</strong> Иначе самыми решительными были&nbsp;бы те, кто больше всех себя заставляет. А&nbsp;это не&nbsp;так</p>
+  </div>
+</div>
+
+<div class="mystery-reveal reveal">
+  <p>Вы&nbsp;можете быть умным, образованным, успешным&nbsp;— и&nbsp;всё равно не&nbsp;доверять своим решениям.</p>
+  <p>Рядом есть люди, которые не&nbsp;читали книг по&nbsp;саморазвитию, не&nbsp;ходили на&nbsp;терапию&nbsp;— но&nbsp;спокойно принимают решения и&nbsp;живут свою жизнь.</p>
+  <p>Они не&nbsp;умнее вас. Не&nbsp;увереннее. Не&nbsp;лучше.</p>
+  <p><strong>У&nbsp;них просто работает то, что у&nbsp;вас заблокировано.</strong></p>
+  <p class="knows">И&nbsp;я&nbsp;знаю, как это включить&nbsp;↓</p>
+</div>
+
+<!-- TECHNIQUE -->
+<section class="technique-section">
+  <div class="technique-inner">
+    <div class="technique-header reveal">
+      <div class="section-tag">Метод</div>
+      <h2>Техника программирования мозга</h2>
+      <p>На&nbsp;программе вы&nbsp;получите не&nbsp;теорию, а&nbsp;конкретную технику, которая перенастраивает нейронные связи за&nbsp;2&nbsp;недели практики</p>
+    </div>
+    <div class="technique-grid">
+      <div class="technique-card reveal d1">
+        <div class="technique-icon">🧠</div>
+        <h4>Нейропластичность</h4>
+        <p>Мозг физически меняет структуру под воздействием целенаправленной практики</p>
+      </div>
+      <div class="technique-card reveal d2">
+        <div class="technique-icon">🎯</div>
+        <h4>Точечное воздействие</h4>
+        <p>Работа с&nbsp;конкретными зонами мозга: миндалина, островковая кора, DMN</p>
+      </div>
+      <div class="technique-card reveal d3">
+        <div class="technique-icon">⚡</div>
+        <h4>Быстрый результат</h4>
+        <p>Первые изменения ощущаются через 3–5&nbsp;минут. Устойчивый эффект&nbsp;— через 2&nbsp;недели</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="section">
+  <div class="section-header reveal"><div class="section-tag">Для кого</div><h2 class="section-title">Программа для вас, если</h2></div>
+  <div class="recog-grid">
+    <div class="recog-card reveal d1"><div class="recog-icon">💬</div><p>Перед решением нужно спросить маму, мужа, подругу, коллегу. Иначе не&nbsp;уверены.</p></div>
+    <div class="recog-card reveal d2"><div class="recog-icon">⏳</div><p>Откладываете важные решения. Ждёте, пока «станет понятнее». Не&nbsp;становится.</p></div>
+    <div class="recog-card reveal d3"><div class="recog-icon">🎭</div><p>Выбрали профессию, отношения, город&nbsp;— чтобы не&nbsp;расстроить родителей.</p></div>
+    <div class="recog-card reveal d1"><div class="recog-icon">🔄</div><p>Приняли решение&nbsp;— и&nbsp;прокручиваете его в&nbsp;голове днями. А&nbsp;если неправильно?</p></div>
+    <div class="recog-card reveal d2"><div class="recog-icon">🔇</div><p>Знаете, чего хотите. Но&nbsp;делаете «как правильно». Как от&nbsp;вас ожидают.</p></div>
+    <div class="recog-card reveal d3"><div class="recog-icon">❓</div><p>На&nbsp;вопрос «чего ты&nbsp;хочешь?»&nbsp;— ступор. Все желания какие-то не&nbsp;ваши.</p></div>
+  </div>
+</section>
+
+<!-- BRAIN -->
+<section class="brain-section">
+  <div class="brain-inner">
+    <div class="brain-visual reveal">
+      <svg class="brain-svg" viewBox="0 0 400 320" fill="none">
+        <path d="M330 160c0-15-8-33-19-48-11-15-24-24-38-31-8-4-17-8-27-9 5-11 8-24 5-36-5-19-24-29-43-27-15 2-27 11-34 24-9-8-24-11-38-9-19 3-33 18-38 37-2 8-2 16 0 24-15 5-27 15-37 27-15 19-21 43-18 67 4 19 15 37 31 48-2 11 2 24 11 34 11 11 29 18 46 15 8 15 21 27 38 31 24 6 48-2 62-19 9 8 21 11 34 11 19 0 37-9 48-24 18-21 21-53 18-84z" fill="#E8F0EA" stroke="#3B7A5A" stroke-width="2"/>
+        <g class="limbic">
+          <path d="M135 145c30-20 70-20 100 0 20 15 35 35 40 60" stroke="#3B7A5A" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M165 190c15 10 25 25 20 45-4 12-12 20-26 22" stroke="#3B7A5A" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="152" cy="215" rx="22" ry="17" fill="#3B7A5A" opacity=".8"/>
+          <ellipse cx="200" cy="175" rx="30" ry="22" fill="#3B7A5A" opacity=".7"/>
+          <ellipse cx="185" cy="208" rx="16" ry="13" fill="#3B7A5A" opacity=".75"/>
+        </g>
+      </svg>
+      <div class="brain-labels">
+        <div class="brain-label label-amygdala"><span class="dot"></span><span class="line"></span><span class="text">Миндалина</span></div>
+        <div class="brain-label label-hippocampus"><span class="dot"></span><span class="line"></span><span class="text">Гиппокамп</span></div>
+        <div class="brain-label label-thalamus right"><span class="text">Таламус</span><span class="line"></span><span class="dot"></span></div>
+        <div class="brain-label label-hypothalamus right"><span class="text">Гипоталамус</span><span class="line"></span><span class="dot"></span></div>
+        <div class="brain-label label-cingulate"><span class="text">Поясная извилина</span><span class="line"></span><span class="dot"></span></div>
+      </div>
+    </div>
+    <div class="brain-content reveal">
+      <h3>Что происходит <span>в&nbsp;мозге</span></h3>
+      <p>В&nbsp;2001&nbsp;году нейробиолог Marcus Raichle открыл Default Mode Network&nbsp;— сеть мозга, которая тратит до&nbsp;20% энергии на&nbsp;бесконечный внутренний монолог: сомнения, тревогу, прокрутку решений.</p>
+      <p>Целенаправленная практика физически меняет структуру мозга&nbsp;— это видно на&nbsp;МРТ через 4–8&nbsp;недель.</p>
+      <p>Ваше тело знает правильный ответ за&nbsp;2‑5&nbsp;секунд до&nbsp;того, как ум&nbsp;начинает анализировать. Техника программирования восстанавливает эту связь.</p>
+      <div class="brain-stats" id="brainStats">
+        <div><div class="b-row"><span>Префронтальная кора</span><span class="val">↑ +15%</span></div><div class="b-bar"><div class="b-fill g" style="--w:75%"></div></div></div>
+        <div><div class="b-row"><span>Островковая кора (интероцепция)</span><span class="val">↑ +22%</span></div><div class="b-bar"><div class="b-fill g" style="--w:88%"></div></div></div>
+        <div><div class="b-row"><span>Миндалина (тревога)</span><span class="neg">↓ −18%</span></div><div class="b-bar"><div class="b-fill r" style="--w:45%"></div></div></div>
+        <div><div class="b-row"><span>Активность DMN</span><span class="neg">↓ −40%</span></div><div class="b-bar"><div class="b-fill r" style="--w:80%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORM -->
+<section class="section">
+  <div class="section-header reveal"><div class="section-tag">Результат</div><h2 class="section-title">Что изменится</h2></div>
+  <div class="transform-grid">
+    <div class="transform-card reveal d1"><div class="transform-from">Спрашиваю всех перед решением</div><div class="transform-arrow">↓</div><div class="transform-to">Слышу себя и&nbsp;доверяю этому</div></div>
+    <div class="transform-card reveal d2"><div class="transform-from">Откладываю, потому что страшно</div><div class="transform-arrow">↓</div><div class="transform-to">Решаю и&nbsp;двигаюсь дальше</div></div>
+    <div class="transform-card reveal d3"><div class="transform-from">Живу по&nbsp;чужим ожиданиям</div><div class="transform-arrow">↓</div><div class="transform-to">Строю свою жизнь</div></div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section class="section" id="program">
+  <div class="section-header reveal"><div class="section-tag">Программа</div><h2 class="section-title">Что будет</h2><p class="section-desc">2&nbsp;живые встречи + техника программирования мозга</p></div>
+  <div class="steps-grid reveal">
+    <div class="step-card"><div class="step-num">1</div><div class="step-title">Диагностика</div><div class="step-desc">Где вы сейчас</div></div>
+    <div class="step-card"><div class="step-num">2</div><div class="step-title">Механизм</div><div class="step-desc">Как это устроено</div></div>
+    <div class="step-card"><div class="step-num">3</div><div class="step-title">Точка слома</div><div class="step-desc">Когда сломалось</div></div>
+    <div class="step-card"><div class="step-num">4</div><div class="step-title">Техника</div><div class="step-desc">Программирование</div></div>
+    <div class="step-card"><div class="step-num">5</div><div class="step-title">Тело-компас</div><div class="step-desc">Читать сигналы</div></div>
+    <div class="step-card"><div class="step-num">6</div><div class="step-title">Протокол</div><div class="step-desc">Система решений</div></div>
+  </div>
+</section>
+
+<!-- FREQUENCY -->
+<section class="frequency-section">
+  <div class="frequency-inner">
+    <div class="frequency-visual reveal">
+      <div class="wave-container">
+        <svg class="wave-svg" viewBox="0 0 400 200">
+          <defs>
+            <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#3B7A5A;stop-opacity:0.3"/>
+              <stop offset="50%" style="stop-color:#3B7A5A;stop-opacity:1"/>
+              <stop offset="100%" style="stop-color:#3B7A5A;stop-opacity:0.3"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 100 Q50 50 100 100 T200 100 T300 100 T400 100" fill="none" stroke="url(#waveGrad)" stroke-width="3">
+            <animate attributeName="d" dur="2s" repeatCount="indefinite" values="M0 100 Q50 50 100 100 T200 100 T300 100 T400 100;M0 100 Q50 150 100 100 T200 100 T300 100 T400 100;M0 100 Q50 50 100 100 T200 100 T300 100 T400 100"/>
+          </path>
+          <path d="M0 100 Q50 70 100 100 T200 100 T300 100 T400 100" fill="none" stroke="#C49A52" stroke-width="2" opacity="0.6">
+            <animate attributeName="d" dur="3s" repeatCount="indefinite" values="M0 100 Q50 70 100 100 T200 100 T300 100 T400 100;M0 100 Q50 130 100 100 T200 100 T300 100 T400 100;M0 100 Q50 70 100 100 T200 100 T300 100 T400 100"/>
+          </path>
+        </svg>
+        <div class="wave-info">
+          <div class="wave-stat"><b>432 Hz</b><small>Частота гармонии</small></div>
+          <div class="wave-stat"><b>7.83 Hz</b><small>Резонанс Шумана</small></div>
+          <div class="wave-stat"><b>θ-волны</b><small>4-8 Hz</small></div>
+          <div class="wave-stat"><b>α-волны</b><small>8-12 Hz</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="frequency-content reveal">
+      <h3>Музыка определённой <span>частоты</span></h3>
+      <p>В&nbsp;VIP-формате вы&nbsp;получите персональную практику программирования мозга под специально подобранную музыку определённой частоты.</p>
+      <p>Определённые звуковые частоты синхронизируют работу полушарий мозга и&nbsp;создают оптимальное состояние для перепрограммирования нейронных связей.</p>
+      <div class="frequency-list">
+        <div class="frequency-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><p>Бинауральные ритмы для синхронизации полушарий</p></div>
+        <div class="frequency-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><p>Изохронные тоны для глубокого погружения</p></div>
+        <div class="frequency-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><p>Персональный подбор частот под ваш запрос</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section class="section">
+  <div class="section-header reveal"><div class="section-tag">Научная база</div><h2 class="section-title">Исследования, на&nbsp;которых основана программа</h2></div>
+  <div class="science-grid">
+    <div class="science-card reveal d1"><div class="science-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg></div><h4>Соматические маркеры</h4><p>Тело «знает» правильный выбор за&nbsp;2–5&nbsp;секунд до&nbsp;осознания</p><div class="science-source">Damasio, 1994</div></div>
+    <div class="science-card reveal d2"><div class="science-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 12h6M12 9v6"/></svg></div><h4>Эвристики</h4><p>Простые решения на&nbsp;основе интуиции часто точнее сложного анализа</p><div class="science-source">Gigerenzer, 2007</div></div>
+    <div class="science-card reveal d3"><div class="science-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="3 3"/><circle cx="12" cy="12" r="4"/></svg></div><h4>Интероцепция</h4><p>Точность чтения сигналов тела растёт на&nbsp;40% за&nbsp;8&nbsp;недель практики</p><div class="science-source">Critchley, 2004</div></div>
+    <div class="science-card reveal"><div class="science-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div><h4>Default Mode Network</h4><p>Сеть внутреннего монолога можно перенастроить практикой</p><div class="science-source">Raichle, 2001</div></div>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="section" id="author">
+  <div class="section-header reveal"><div class="section-tag">Автор</div><h2 class="section-title">Дарья Ростовцева</h2></div>
+  <div class="about-box reveal">
+    <img src="https://thebodymindcode.github.io/session1/daria.jpg" alt="Дарья Ростовцева" class="about-photo-img">
+    <div class="about-content">
+      <h3>Создатель «Архитектуры сознания»</h3>
+      <div class="about-role">Нейробиолог · Автор методик</div>
+      <p>10+&nbsp;лет исследую, как мозг принимает решения. Через программы прошли 800+&nbsp;участников: предприниматели, врачи, айтишники, мамы в&nbsp;декрете, студенты. 92% отмечают изменения.</p>
+      <p>Автор программ: «Протокол остановки ума»&nbsp;— 28&nbsp;дней, «Код денег»&nbsp;— 14-дневный интенсив, «Код нового года»&nbsp;— 3&nbsp;дня трансформации, «За&nbsp;пределами заболеваний»&nbsp;— работа с&nbsp;телом. Провожу персональные сессии 1&nbsp;на&nbsp;1.</p>
+      <p>Не&nbsp;эзотерика. Не&nbsp;мотивация. Нейронаука и&nbsp;конкретные инструменты.</p>
+      <div class="about-stats">
+        <div class="about-stat"><b>800+</b><small>участников</small></div>
+        <div class="about-stat"><b>6</b><small>программ</small></div>
+        <div class="about-stat"><b>92%</b><small>результат</small></div>
+        <div class="about-stat"><b>10+</b><small>лет практики</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section">
+  <div class="section-header reveal"><div class="section-tag">Что входит</div><h2 class="section-title">Материалы программы</h2></div>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal d1"><div class="benefit-icon">📹</div><h4>2&nbsp;Zoom-встречи</h4><p>По&nbsp;90&nbsp;минут</p></div>
+    <div class="benefit-card reveal d2"><div class="benefit-icon">📖</div><h4>PDF-мануал</h4><p>Полное руководство</p></div>
+    <div class="benefit-card reveal d3"><div class="benefit-icon">🧠</div><h4>Техника программирования</h4><p>Практика для&nbsp;мозга</p></div>
+    <div class="benefit-card reveal d1"><div class="benefit-icon">📝</div><h4>Рабочая тетрадь</h4><p>30&nbsp;дней</p></div>
+    <div class="benefit-card reveal d2"><div class="benefit-icon">💬</div><h4>Закрытый чат</h4><p>Сообщество</p></div>
+    <div class="benefit-card reveal d3"><div class="benefit-icon">📼</div><h4>Записи встреч</h4><p>Навсегда</p></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="section-header reveal"><div class="section-tag">Тарифы</div><h2 class="section-title">Два формата участия</h2><p class="section-desc">Старт 22&nbsp;февраля</p></div>
+  <div class="pricing-grid">
+    <div class="pricing-card basic reveal">
+      <div class="pricing-name">Программа</div>
+      <div class="pricing-desc">Самостоятельное прохождение с&nbsp;группой</div>
+      <div class="pricing-price">4&nbsp;900 <small>₽</small></div>
+      <div class="pricing-period">один раз — доступ навсегда</div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>2&nbsp;живые Zoom-встречи по&nbsp;90&nbsp;минут</div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Записи встреч навсегда</div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>PDF-мануал</div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Техника программирования мозга</div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Рабочая тетрадь на&nbsp;30&nbsp;дней</div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Закрытый чат участников</div>
+      </div>
+      <a href="#" class="btn-primary">Записаться</a>
+    </div>
+    <div class="pricing-card vip reveal">
+      <div class="pricing-badge">Личная работа</div>
+      <div class="pricing-name">VIP-сопровождение</div>
+      <div class="pricing-desc">Персональная работа с&nbsp;Дарьей — 1&nbsp;месяц</div>
+      <div class="pricing-price">80&nbsp;000 <small>₽</small></div>
+      <div class="pricing-period">один раз — доступ навсегда</div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Всё из&nbsp;базовой программы</div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>4&nbsp;персональные сессии 1&nbsp;на&nbsp;1</strong></div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Разбор по&nbsp;Human Design</strong></div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Персональная практика программирования под музыку определённой частоты</strong></div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Личный чат с&nbsp;Дарьей — 30&nbsp;дней</strong></div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Доступ ко&nbsp;всем программам Дарьи</strong></div>
+      </div>
+      <a href="#" class="btn-primary btn-gold">Подать заявку</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-header reveal"><div class="section-tag">Вопросы</div><h2 class="section-title">Частые вопросы</h2></div>
+  <div class="faq-grid">
+    <div class="fq reveal"><button class="fq-q">Это научно обосновано или эзотерика?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="fq-a"><p>Все методы основаны на&nbsp;рецензируемых научных исследованиях&nbsp;— нейробиологии, психофизиологии и&nbsp;когнитивной науке. Мы&nbsp;используем объективные показатели: МРТ-сканирование, измерение кортизола, вариабельность сердечного ритма (HRV). Никакой эзотерики&nbsp;— только нейронаука.</p></div></div>
+    <div class="fq reveal"><button class="fq-q">Сколько времени в&nbsp;день нужно?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="fq-a"><p>10–15&nbsp;минут на&nbsp;практику. Программа сделана так, чтобы вписываться в&nbsp;обычный распорядок дня.</p></div></div>
+    <div class="fq reveal"><button class="fq-q">Когда будет результат?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="fq-a"><p>Эффект от&nbsp;техники программирования ощущается сразу&nbsp;— через 3–5&nbsp;минут. Устойчивые изменения&nbsp;— через 2–3&nbsp;недели регулярной практики.</p></div></div>
+    <div class="fq reveal"><button class="fq-q">Что если пропущу встречу?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="fq-a"><p>Все живые встречи записываются. Запись будет в&nbsp;закрытом канале. Посмотрите в&nbsp;удобное время. Ничего не&nbsp;пропадает.</p></div></div>
+    <div class="fq reveal"><button class="fq-q">Доступ ограничен по&nbsp;времени?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="fq-a"><p>Нет. Один раз оплатили&nbsp;— доступ навсегда. Без подписок, ежемесячных платежей и&nbsp;скрытых условий. Материалы не&nbsp;удаляются и&nbsp;не&nbsp;блокируются.</p></div></div>
+    <div class="fq reveal"><button class="fq-q">Что такое техника программирования?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="fq-a"><p>Это конкретная практика, которая воздействует на&nbsp;нейронные связи мозга. Вы&nbsp;получите пошаговый протокол, который можно выполнять самостоятельно. Никакой мистики&nbsp;— чистая нейробиология.</p></div></div>
+    <div class="fq reveal"><button class="fq-q">Чем отличается VIP от&nbsp;базовой программы?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="fq-a"><p>В&nbsp;VIP вы&nbsp;получаете 4&nbsp;персональные сессии с&nbsp;Дарьей, разбор по&nbsp;Human Design и&nbsp;персональную практику программирования мозга под специально подобранную музыку определённой частоты. Плюс личный чат на&nbsp;30&nbsp;дней и&nbsp;доступ ко&nbsp;всем программам.</p></div></div>
+    <div class="fq reveal"><button class="fq-q">Нужна&nbsp;ли подготовка?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="fq-a"><p>Нет. Программа подходит для любого уровня. Всё объясняется с&nbsp;нуля. Главное&nbsp;— готовность практиковать.</p></div></div>
+    <div class="fq reveal"><button class="fq-q">Как проходят встречи?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="fq-a"><p>Встречи проходят в&nbsp;Zoom. Вы&nbsp;получите ссылку заранее. Можно участвовать с&nbsp;телефона или компьютера. Все встречи записываются.</p></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Готовы начать слышать себя?</h2>
+  <p>Старт 22&nbsp;февраля. Количество мест ограничено.</p>
+  <a href="#pricing" class="btn-large">Записаться на&nbsp;программу</a>
+</section>
+
+<footer>
+  <div class="ft-links">
+    <a href="https://t.me/TheBodyMindCode_support" target="_blank">Поддержка</a>
+    <a href="https://instagram.com/thebodymindcode" target="_blank">Instagram</a>
+    <a href="https://thebodymindcode.github.io/shop/" target="_blank">Все программы</a>
+  </div>
+  <p class="ft-copy">© 2026 Архитектура сознания. ИП&nbsp;Ростовцева Дарья Валерьевна · ИНН: 241103415641</p>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const brainObs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('vis');brainObs.unobserve(el.target)}})},{threshold:.3});
+document.querySelectorAll('.brain-stats').forEach(el=>brainObs.observe(el));
+document.querySelectorAll('.fq-q').forEach(b=>{b.addEventListener('click',()=>{const p=b.parentElement,a=p.classList.contains('open');document.querySelectorAll('.fq').forEach(i=>i.classList.remove('open'));if(!a)p.classList.add('open')})});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}})});
+</script>
+</body>
+</html>
