@@ -45,7 +45,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
 .nav-r .cta{background:var(--sage);color:#fff;font-weight:600;padding:9px 20px;border-radius:10px}
 .nav-r .cta:hover{background:var(--sage-dark)}
 
-.hero{max-width:1200px;margin:0 auto;padding:56px 32px 32px;text-align:center}
+.hero-wrapper{background:linear-gradient(180deg,#E8F0EA 0%,#F5F7F5 50%,#fff 100%);position:relative;overflow:hidden}
+.hero-wrapper::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 20% 0%,rgba(59,122,90,.1) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(196,154,82,.08) 0%,transparent 40%);pointer-events:none}
+.hero-wrapper::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--sage),transparent);opacity:.2}
+.hero{max-width:1200px;margin:0 auto;padding:56px 32px 32px;text-align:center;position:relative;z-index:1}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:100px;background:var(--sage-pale);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);margin-bottom:20px}
 .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:16px}
 .hero h1 span{color:var(--sage)}
@@ -63,42 +66,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
 .trust-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;background:var(--bg2);font-size:.75rem;color:var(--text2);font-weight:500}
 .trust-pill svg{width:14px;height:14px;color:var(--sage)}
 
-/* ANIMATED QUOTE WITH VISUAL */
-.main-quote{max-width:1100px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
-.quote-text{text-align:left}
+/* MAIN QUOTE - CENTERED */
+.main-quote{max-width:900px;margin:0 auto;padding:60px 32px 80px;text-align:center}
 .quote-line{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:500;color:var(--text);line-height:1.6;margin-bottom:4px}
 .quote-line.highlight{color:var(--sage);font-weight:700;font-size:clamp(1.7rem,4vw,2.6rem);margin-top:8px}
-.quote-visual{position:relative;width:200px;height:200px}
-.quote-visual svg{width:100%;height:100%}
-/* Центральная точка - ТЫ */
-.center-dot{fill:var(--sage);transform-origin:center}
-.center-dot-glow{fill:var(--sage);opacity:.3;animation:centerPulse 2s ease-in-out infinite}
-@keyframes centerPulse{0%,100%{r:15;opacity:.3}50%{r:25;opacity:.15}}
-/* Орбиты */
-.orbit{fill:none;stroke:var(--sage);stroke-width:1;opacity:.2}
-.orbit-1{stroke-dasharray:10 5;animation:orbitRotate 20s linear infinite}
-.orbit-2{stroke-dasharray:15 10;animation:orbitRotate 30s linear infinite reverse}
-.orbit-3{stroke-dasharray:5 15;animation:orbitRotate 25s linear infinite}
-@keyframes orbitRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-/* Внешние точки */
-.external-dot{fill:var(--rose);opacity:.6;animation:externalFade 3s ease-in-out infinite}
-.external-dot:nth-child(1){animation-delay:0s}
-.external-dot:nth-child(2){animation-delay:.5s}
-.external-dot:nth-child(3){animation-delay:1s}
-.external-dot:nth-child(4){animation-delay:1.5s}
-.external-dot:nth-child(5){animation-delay:2s}
-@keyframes externalFade{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:.2;transform:scale(.7)}}
-/* Лучи от центра */
-.ray{stroke:var(--sage);stroke-width:2;opacity:0;animation:rayShoot 4s ease-out infinite}
-.ray:nth-child(1){animation-delay:0s}
-.ray:nth-child(2){animation-delay:1s}
-.ray:nth-child(3){animation-delay:2s}
-.ray:nth-child(4){animation-delay:3s}
-@keyframes rayShoot{0%{opacity:0;stroke-dashoffset:50}20%{opacity:.8}80%{opacity:.8}100%{opacity:0;stroke-dashoffset:0}}
-/* Пульс силы */
-.power-ring{fill:none;stroke:var(--sage);stroke-width:2;opacity:0;animation:powerPulse 3s ease-out infinite}
-@keyframes powerPulse{0%{r:20;opacity:.8;stroke-width:3}100%{r:90;opacity:0;stroke-width:1}}
-@media(max-width:800px){.main-quote{grid-template-columns:1fr;text-align:center}.quote-text{order:2}.quote-visual{margin:0 auto;width:150px;height:150px}}
 
 /* AUTHORITY SECTION */
 .authority-section{background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);padding:80px 32px}
@@ -430,6 +401,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
   </div>
 </div></nav>
 
+<div class="hero-wrapper">
 <div class="hero">
   <div class="hero-badge">Старт 22&nbsp;февраля</div>
   <h1>Внутренний <span>Авторитет</span></h1>
@@ -452,52 +424,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
 
 <!-- MAIN QUOTE -->
 <div class="main-quote">
-  <div class="quote-text">
-    <p class="quote-line">Ты не разучился принимать решения.</p>
-    <p class="quote-line">Ты забыл, что</p>
-    <p class="quote-line highlight">имеешь на это право.</p>
-  </div>
-  <div class="quote-visual">
-    <svg viewBox="0 0 200 200">
-      <!-- Пульсирующие кольца силы -->
-      <circle class="power-ring" cx="100" cy="100" r="20"/>
-      <circle class="power-ring" cx="100" cy="100" r="20" style="animation-delay:1s"/>
-      <circle class="power-ring" cx="100" cy="100" r="20" style="animation-delay:2s"/>
-      
-      <!-- Орбиты -->
-      <g style="transform-origin:100px 100px">
-        <circle class="orbit orbit-1" cx="100" cy="100" r="70"/>
-      </g>
-      <g style="transform-origin:100px 100px">
-        <circle class="orbit orbit-2" cx="100" cy="100" r="85"/>
-      </g>
-      <g style="transform-origin:100px 100px">
-        <circle class="orbit orbit-3" cx="100" cy="100" r="55"/>
-      </g>
-      
-      <!-- Внешние точки (уходящие авторитеты) -->
-      <g style="transform-origin:100px 100px">
-        <circle class="external-dot" cx="100" cy="15" r="4"/>
-        <circle class="external-dot" cx="175" cy="60" r="3"/>
-        <circle class="external-dot" cx="185" cy="130" r="3"/>
-        <circle class="external-dot" cx="40" cy="50" r="4"/>
-        <circle class="external-dot" cx="20" cy="120" r="3"/>
-      </g>
-      
-      <!-- Лучи от центра -->
-      <g stroke-dasharray="50" style="transform-origin:100px 100px">
-        <line class="ray" x1="100" y1="100" x2="100" y2="30"/>
-        <line class="ray" x1="100" y1="100" x2="170" y2="100"/>
-        <line class="ray" x1="100" y1="100" x2="100" y2="170"/>
-        <line class="ray" x1="100" y1="100" x2="30" y2="100"/>
-      </g>
-      
-      <!-- Центральная точка - ТЫ -->
-      <circle class="center-dot-glow" cx="100" cy="100" r="20"/>
-      <circle class="center-dot" cx="100" cy="100" r="12"/>
-      <text x="100" y="105" text-anchor="middle" fill="white" font-size="10" font-weight="700">ТЫ</text>
-    </svg>
-  </div>
+  <p class="quote-line">Ты не разучился принимать решения.</p>
+  <p class="quote-line">Ты забыл, что</p>
+  <p class="quote-line highlight">имеешь на это право.</p>
+</div>
 </div>
 
 <!-- WHAT IS AUTHORITY -->
