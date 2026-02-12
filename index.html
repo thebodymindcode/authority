@@ -46,7 +46,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
 .hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:100px;background:var(--sage-pale);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);margin-bottom:20px}
 .hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:16px}
 .hero h1 span{color:var(--sage)}
-.hero-sub{font-size:1.05rem;color:var(--text2);max-width:560px;margin:0 auto 12px;line-height:1.7;text-wrap:balance}
+.hero-sub{font-size:.95rem;color:var(--text3);max-width:560px;margin:0 auto 12px;line-height:1.7;text-wrap:balance}
+.hero-tagline{font-size:1.3rem;font-weight:500;font-style:italic;color:var(--sage);margin-bottom:8px;letter-spacing:-.01em}
 .hero-author{font-size:.88rem;color:var(--text3);margin-bottom:32px}
 .hero-author strong{color:var(--text);font-weight:600}
 
@@ -58,6 +59,67 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
 .trust-bar{max-width:1200px;margin:0 auto;padding:0 32px 40px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 .trust-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;background:var(--bg2);font-size:.75rem;color:var(--text2);font-weight:500}
 .trust-pill svg{width:14px;height:14px;color:var(--sage)}
+
+/* ANIMATED QUOTE WITH VISUAL */
+.main-quote{max-width:1100px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+.quote-text{text-align:left}
+.quote-line{font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:500;color:var(--text);line-height:1.5;margin-bottom:8px}
+.quote-line.highlight{color:var(--sage);font-weight:700;font-size:clamp(1.6rem,4vw,2.6rem)}
+.quote-visual{position:relative;width:200px;height:200px}
+.quote-visual svg{width:100%;height:100%}
+/* Центральная точка - ТЫ */
+.center-dot{fill:var(--sage);transform-origin:center}
+.center-dot-glow{fill:var(--sage);opacity:.3;animation:centerPulse 2s ease-in-out infinite}
+@keyframes centerPulse{0%,100%{r:15;opacity:.3}50%{r:25;opacity:.15}}
+/* Орбиты */
+.orbit{fill:none;stroke:var(--sage);stroke-width:1;opacity:.2}
+.orbit-1{stroke-dasharray:10 5;animation:orbitRotate 20s linear infinite}
+.orbit-2{stroke-dasharray:15 10;animation:orbitRotate 30s linear infinite reverse}
+.orbit-3{stroke-dasharray:5 15;animation:orbitRotate 25s linear infinite}
+@keyframes orbitRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+/* Внешние точки - авторитеты, которые отдаляются */
+.external-dot{fill:var(--rose);opacity:.6;animation:externalFade 3s ease-in-out infinite}
+.external-dot:nth-child(1){animation-delay:0s}
+.external-dot:nth-child(2){animation-delay:.5s}
+.external-dot:nth-child(3){animation-delay:1s}
+.external-dot:nth-child(4){animation-delay:1.5s}
+.external-dot:nth-child(5){animation-delay:2s}
+@keyframes externalFade{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:.2;transform:scale(.7)}}
+/* Лучи от центра */
+.ray{stroke:var(--sage);stroke-width:2;opacity:0;animation:rayShoot 4s ease-out infinite}
+.ray:nth-child(1){animation-delay:0s}
+.ray:nth-child(2){animation-delay:1s}
+.ray:nth-child(3){animation-delay:2s}
+.ray:nth-child(4){animation-delay:3s}
+@keyframes rayShoot{0%{opacity:0;stroke-dashoffset:50}20%{opacity:.8}80%{opacity:.8}100%{opacity:0;stroke-dashoffset:0}}
+/* Пульс силы */
+.power-ring{fill:none;stroke:var(--sage);stroke-width:2;opacity:0;animation:powerPulse 3s ease-out infinite}
+@keyframes powerPulse{0%{r:20;opacity:.8;stroke-width:3}100%{r:90;opacity:0;stroke-width:1}}
+@media(max-width:800px){.main-quote{grid-template-columns:1fr;text-align:center}.quote-text{order:2}.quote-visual{margin:0 auto;width:150px;height:150px}}
+
+/* AUTHORITY SECTION */
+.authority-section{background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);padding:80px 32px}
+.authority-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+.authority-content .section-tag{justify-content:flex-start}
+.authority-content .section-tag::before{display:none}
+.authority-content h2{font-size:clamp(1.4rem,3vw,1.8rem);font-weight:800;margin-bottom:24px;line-height:1.3}
+.authority-content h2 span{color:var(--sage)}
+.authority-text p{font-size:.95rem;color:var(--text2);margin-bottom:16px;line-height:1.8}
+.authority-text p strong{color:var(--text);font-size:1rem}
+.authority-visual{display:flex;justify-content:center}
+.authority-diagram{display:flex;align-items:center;gap:24px}
+.auth-circle{border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.auth-outer{width:200px;height:200px;background:linear-gradient(135deg,#f5f5f5,#eee);border:2px dashed var(--rose);position:relative}
+.auth-outer span{font-size:.7rem;font-weight:600;color:var(--rose);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.auth-items{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:0 10px}
+.auth-item{font-size:.65rem;color:var(--text3);background:#fff;padding:3px 8px;border-radius:10px;border:1px solid var(--border)}
+.auth-inner{width:50px;height:50px;background:var(--bg);border:2px solid var(--text3);position:absolute}
+.auth-inner span{font-size:.7rem;font-weight:700;color:var(--text3)}
+.auth-arrow{font-size:2rem;color:var(--sage);animation:arrowPulse 1.5s ease-in-out infinite}
+@keyframes arrowPulse{0%,100%{transform:translateX(0);opacity:.5}50%{transform:translateX(5px);opacity:1}}
+.auth-result .auth-center{width:120px;height:120px;background:linear-gradient(135deg,var(--sage-light),#fff);border:3px solid var(--sage);box-shadow:0 10px 40px rgba(59,122,90,.2)}
+.auth-center span{font-size:1.2rem;font-weight:800;color:var(--sage)}
+@media(max-width:900px){.authority-inner{grid-template-columns:1fr}.authority-visual{order:-1;margin-bottom:20px}.authority-diagram{transform:scale(.85)}}
 
 .section{max-width:1200px;margin:0 auto;padding:0 32px 80px}
 .section-header{text-align:center;margin-bottom:48px}
@@ -202,25 +264,25 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
 .science-source{font-size:.72rem;color:var(--sage);font-weight:600}
 @media(max-width:600px){.science-grid{grid-template-columns:1fr}}
 
-/* FREQUENCY SECTION */
-.frequency-section{background:var(--bg);padding:80px 32px}
-.frequency-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.frequency-visual{position:relative}
-.wave-container{background:linear-gradient(135deg,var(--sage-light),#fff);border-radius:20px;padding:40px;position:relative;overflow:hidden}
-.wave-svg{width:100%;height:200px}
-.wave-info{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
-.wave-stat{background:#fff;border-radius:12px;padding:16px;text-align:center;border:1px solid var(--border)}
-.wave-stat b{display:block;font-size:1.3rem;font-weight:800;color:var(--sage);margin-bottom:4px}
-.wave-stat small{font-size:.72rem;color:var(--text3)}
-.frequency-content h3{font-size:1.4rem;font-weight:800;margin-bottom:20px}
-.frequency-content h3 span{color:var(--sage)}
-.frequency-content p{font-size:.9rem;color:var(--text2);margin-bottom:14px;line-height:1.7}
-.frequency-list{margin-top:24px}
-.frequency-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
-.frequency-item:last-child{border-bottom:none}
-.frequency-item svg{width:20px;height:20px;color:var(--sage);flex-shrink:0;margin-top:2px}
-.frequency-item p{font-size:.88rem;color:var(--text2)}
-@media(max-width:900px){.frequency-inner{grid-template-columns:1fr}.frequency-visual{order:-1}}
+/* INDIVIDUAL PRACTICE SECTION */
+.practice-section{background:var(--bg);padding:100px 32px}
+.practice-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+.practice-content .section-tag{justify-content:flex-start;color:var(--gold)}
+.practice-content .section-tag::before,.practice-content .section-tag::after{display:none}
+.practice-content h3{font-size:clamp(1.4rem,3vw,1.8rem);font-weight:800;margin-bottom:16px;line-height:1.3}
+.practice-content h3 span{color:var(--sage)}
+.practice-lead{font-size:1.05rem;color:var(--text);margin-bottom:32px;line-height:1.7;font-weight:500}
+.practice-steps{display:flex;flex-direction:column;gap:20px}
+.practice-step{display:flex;gap:16px;padding:20px;background:#fff;border-radius:16px;border:1px solid var(--border);transition:all .3s}
+.practice-step:hover{box-shadow:var(--shadow);transform:translateX(8px);border-color:var(--sage)}
+.step-marker{width:40px;height:40px;background:linear-gradient(135deg,var(--sage),var(--sage-dark));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:#fff;flex-shrink:0}
+.step-content h4{font-size:.95rem;font-weight:700;margin-bottom:6px;color:var(--text)}
+.step-content p{font-size:.85rem;color:var(--text2);line-height:1.6}
+.practice-visual{display:flex;justify-content:center}
+.neural-transform{background:#fff;border-radius:20px;padding:32px;border:1px solid var(--border);box-shadow:var(--shadow)}
+.neural-transform svg{width:100%;max-width:300px;display:block;margin:0 auto}
+.transform-caption{text-align:center;font-size:.8rem;color:var(--text3);margin-top:16px;font-weight:500}
+@media(max-width:900px){.practice-inner{grid-template-columns:1fr}.practice-visual{order:-1}}
 
 /* ABOUT */
 .about-box{background:var(--bg);border-radius:20px;padding:48px;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center}
@@ -242,6 +304,27 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
 .benefit-card p{font-size:.75rem;color:var(--text3)}
 @media(max-width:800px){.benefits-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:500px){.benefits-grid{grid-template-columns:1fr}}
+
+/* VIP SECTION */
+.vip-section{background:linear-gradient(135deg,#1a1a2e 0%,#0f1419 100%);padding:100px 32px;margin-bottom:80px;position:relative;overflow:hidden}
+.vip-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 20% 50%,rgba(196,154,82,.1) 0%,transparent 50%)}
+.vip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center}
+.vip-content .section-tag{color:var(--gold);justify-content:flex-start}
+.vip-content .section-tag::before,.vip-content .section-tag::after{display:none}
+.vip-content h2{color:#fff;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;margin-bottom:16px}
+.vip-lead{color:rgba(255,255,255,.6);font-size:1rem;margin-bottom:32px;line-height:1.7}
+.vip-features{display:flex;flex-direction:column;gap:24px}
+.vip-feature{display:flex;gap:16px;padding:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;transition:all .3s}
+.vip-feature:hover{background:rgba(255,255,255,.06);border-color:rgba(196,154,82,.3)}
+.vip-feature-icon{font-size:1.5rem;flex-shrink:0}
+.vip-feature h4{color:#fff;font-size:.95rem;font-weight:600;margin-bottom:6px}
+.vip-feature p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.6}
+.vip-visual{display:flex;align-items:center;justify-content:center}
+.vip-numbers{display:flex;flex-direction:column;gap:20px;width:100%}
+.vip-number{background:linear-gradient(145deg,rgba(196,154,82,.15),rgba(196,154,82,.05));border:1px solid rgba(196,154,82,.2);border-radius:16px;padding:24px 32px;display:flex;align-items:center;gap:16px}
+.vip-number b{font-size:2.5rem;font-weight:800;color:var(--gold);line-height:1}
+.vip-number span{color:rgba(255,255,255,.7);font-size:.9rem}
+@media(max-width:900px){.vip-inner{grid-template-columns:1fr}.vip-visual{order:-1;margin-bottom:20px}}
 
 /* PRICING */
 .pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;margin:0 auto}
@@ -282,16 +365,35 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
 
 /* CTA */
 .cta-section{background:var(--sage);padding:80px 32px;text-align:center}
+.cta-quote{font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.8);margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto}
 .cta-section h2{color:#fff;font-size:1.5rem;font-weight:800;margin-bottom:12px}
 .cta-section p{color:rgba(255,255,255,.8);font-size:.95rem;margin-bottom:32px}
 .btn-large{display:inline-flex;align-items:center;gap:10px;padding:18px 48px;background:#fff;color:var(--sage);text-decoration:none;font-weight:700;font-size:.95rem;border-radius:14px;transition:all .25s;box-shadow:0 4px 20px rgba(0,0,0,.1)}
 .btn-large:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
 
-footer{border-top:1px solid var(--border);padding:32px;text-align:center}
-.ft-links{display:flex;justify-content:center;gap:24px;margin-bottom:12px}
-.ft-links a{font-size:.78rem;color:var(--text3);text-decoration:none;font-weight:500;transition:.2s}
-.ft-links a:hover{color:var(--sage)}
-.ft-copy{font-size:.68rem;color:var(--text3);opacity:.7}
+/* PREMIUM FOOTER */
+.premium-footer{background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);color:#fff}
+.footer-inner{max-width:1200px;margin:0 auto;padding:80px 32px 60px;display:grid;grid-template-columns:1fr 2fr;gap:60px}
+.footer-brand{display:flex;flex-direction:column;gap:16px}
+.footer-logo{font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.logo-dot{color:var(--sage);font-size:1.2rem}
+.footer-tagline{font-size:.85rem;color:rgba(255,255,255,.5);max-width:250px;line-height:1.6}
+.footer-social{display:flex;gap:12px;margin-top:8px}
+.social-link{width:40px;height:40px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.social-link:hover{background:var(--sage);border-color:var(--sage);transform:translateY(-2px)}
+.social-link svg{width:18px;height:18px;fill:rgba(255,255,255,.7)}
+.social-link:hover svg{fill:#fff}
+.footer-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.footer-col h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:20px}
+.footer-col a{display:block;font-size:.88rem;color:rgba(255,255,255,.7);text-decoration:none;padding:6px 0;transition:all .2s}
+.footer-col a:hover{color:#fff;transform:translateX(4px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:24px 32px}
+.footer-bottom-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.4)}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr;gap:40px}.footer-nav{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.footer-nav{grid-template-columns:1fr}.footer-bottom-inner{flex-direction:column;gap:8px;text-align:center}}
+
+
 
 .reveal{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.22,1,.36,1)}
 .reveal.vis{opacity:1;transform:none}
@@ -319,7 +421,8 @@ footer{border-top:1px solid var(--border);padding:32px;text-align:center}
 <div class="hero">
   <div class="hero-badge">Старт 22&nbsp;февраля</div>
   <h1>Внутренний <span>Авторитет</span></h1>
-  <p class="hero-sub">Программа для тех, кто устал спрашивать чужое мнение перед каждым решением</p>
+  <p class="hero-tagline">Вернуть себе право решать</p>
+  <p class="hero-sub">2&nbsp;встречи + поддерживающий звонок</p>
   <p class="hero-author">Автор — <strong>Дарья Ростовцева</strong></p>
   <div class="hero-stats">
     <div class="hero-stat"><b>800+</b><small>участников программ</small></div>
@@ -334,6 +437,95 @@ footer{border-top:1px solid var(--border);padding:32px;text-align:center}
   <div class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Закрытый чат</div>
   <div class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Безопасная оплата</div>
 </div>
+
+<!-- MAIN QUOTE -->
+<div class="main-quote">
+  <div class="quote-text">
+    <p class="quote-line">Ты не разучился принимать решения.</p>
+    <p class="quote-line">Ты забыл, что</p>
+    <p class="quote-line highlight">имеешь на это право.</p>
+  </div>
+  <div class="quote-visual">
+    <svg viewBox="0 0 200 200">
+      <!-- Пульсирующие кольца силы -->
+      <circle class="power-ring" cx="100" cy="100" r="20"/>
+      <circle class="power-ring" cx="100" cy="100" r="20" style="animation-delay:1s"/>
+      <circle class="power-ring" cx="100" cy="100" r="20" style="animation-delay:2s"/>
+      
+      <!-- Орбиты -->
+      <g style="transform-origin:100px 100px">
+        <circle class="orbit orbit-1" cx="100" cy="100" r="70"/>
+      </g>
+      <g style="transform-origin:100px 100px">
+        <circle class="orbit orbit-2" cx="100" cy="100" r="85"/>
+      </g>
+      <g style="transform-origin:100px 100px">
+        <circle class="orbit orbit-3" cx="100" cy="100" r="55"/>
+      </g>
+      
+      <!-- Внешние точки (уходящие авторитеты) -->
+      <g style="transform-origin:100px 100px">
+        <circle class="external-dot" cx="100" cy="15" r="4"/>
+        <circle class="external-dot" cx="175" cy="60" r="3"/>
+        <circle class="external-dot" cx="185" cy="130" r="3"/>
+        <circle class="external-dot" cx="40" cy="50" r="4"/>
+        <circle class="external-dot" cx="20" cy="120" r="3"/>
+      </g>
+      
+      <!-- Лучи от центра -->
+      <g stroke-dasharray="50" style="transform-origin:100px 100px">
+        <line class="ray" x1="100" y1="100" x2="100" y2="30"/>
+        <line class="ray" x1="100" y1="100" x2="170" y2="100"/>
+        <line class="ray" x1="100" y1="100" x2="100" y2="170"/>
+        <line class="ray" x1="100" y1="100" x2="30" y2="100"/>
+      </g>
+      
+      <!-- Центральная точка - ТЫ -->
+      <circle class="center-dot-glow" cx="100" cy="100" r="20"/>
+      <circle class="center-dot" cx="100" cy="100" r="12"/>
+      <text x="100" y="105" text-anchor="middle" fill="white" font-size="10" font-weight="700">ТЫ</text>
+    </svg>
+  </div>
+</div>
+
+<!-- WHAT IS AUTHORITY -->
+<section class="authority-section">
+  <div class="authority-inner">
+    <div class="authority-content reveal">
+      <div class="section-tag">Что такое авторитет</div>
+      <h2>Единственный авторитет в&nbsp;твоей жизни&nbsp;— <span>ты&nbsp;сам</span></h2>
+      <div class="authority-text">
+        <p>Авторитет&nbsp;— это тот, к&nbsp;чьему мнению ты&nbsp;прислушиваешься. Тот, кому ты&nbsp;доверяешь принимать решения за&nbsp;тебя.</p>
+        <p>В&nbsp;детстве авторитетами были родители, учителя, старшие. Это было необходимо&nbsp;— ты&nbsp;не&nbsp;мог выжить сам.</p>
+        <p>Но&nbsp;ты&nbsp;вырос. А&nbsp;внутренняя система осталась детской. Ты&nbsp;до&nbsp;сих пор ищешь, кто&nbsp;бы разрешил. Кто&nbsp;бы сказал, что ты&nbsp;делаешь правильно. Кто&nbsp;бы взял ответственность.</p>
+        <p><strong>Внутренний авторитет&nbsp;— это когда источник решений находится внутри тебя, а&nbsp;не&nbsp;снаружи.</strong></p>
+      </div>
+    </div>
+    <div class="authority-visual reveal">
+      <div class="authority-diagram">
+        <div class="auth-circle auth-outer">
+          <span>Внешние авторитеты</span>
+          <div class="auth-items">
+            <div class="auth-item">Родители</div>
+            <div class="auth-item">Партнёр</div>
+            <div class="auth-item">Начальник</div>
+            <div class="auth-item">Общество</div>
+            <div class="auth-item">Эксперты</div>
+          </div>
+        </div>
+        <div class="auth-circle auth-inner">
+          <span>ТЫ</span>
+        </div>
+        <div class="auth-arrow">→</div>
+        <div class="auth-result">
+          <div class="auth-circle auth-center">
+            <span>ТЫ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- MYSTERY -->
 <div class="mystery-intro reveal">
@@ -368,8 +560,8 @@ footer{border-top:1px solid var(--border);padding:32px;text-align:center}
   <p>Вы&nbsp;можете быть умным, образованным, успешным&nbsp;— и&nbsp;всё равно не&nbsp;доверять своим решениям.</p>
   <p>Рядом есть люди, которые не&nbsp;читали книг по&nbsp;саморазвитию, не&nbsp;ходили на&nbsp;терапию&nbsp;— но&nbsp;спокойно принимают решения и&nbsp;живут свою жизнь.</p>
   <p>Они не&nbsp;умнее вас. Не&nbsp;увереннее. Не&nbsp;лучше.</p>
-  <p><strong>У&nbsp;них просто работает то, что у&nbsp;вас заблокировано.</strong></p>
-  <p class="knows">И&nbsp;я&nbsp;знаю, как это включить&nbsp;↓</p>
+  <p><strong>У&nbsp;них просто не&nbsp;отобрали то, что когда-то отобрали у&nbsp;вас.</strong></p>
+  <p class="knows">Право решать. И&nbsp;я&nbsp;знаю, как его вернуть&nbsp;↓</p>
 </div>
 
 <!-- TECHNIQUE -->
@@ -378,7 +570,7 @@ footer{border-top:1px solid var(--border);padding:32px;text-align:center}
     <div class="technique-header reveal">
       <div class="section-tag">Метод</div>
       <h2>Техника программирования мозга</h2>
-      <p>На&nbsp;программе вы&nbsp;получите не&nbsp;теорию, а&nbsp;конкретную технику, которая перенастраивает нейронные связи за&nbsp;2&nbsp;недели практики</p>
+      <p>На&nbsp;программе вы&nbsp;получите не&nbsp;теорию, а&nbsp;конкретную технику, которая перенастраивает нейронные связи при регулярной практике</p>
     </div>
     <div class="technique-grid">
       <div class="technique-card reveal d1">
@@ -523,9 +715,9 @@ footer{border-top:1px solid var(--border);padding:32px;text-align:center}
     </div>
     <div class="brain-content reveal">
       <h3>Что происходит <span>в&nbsp;мозге</span></h3>
-      <p>В&nbsp;2001&nbsp;году нейробиолог Marcus Raichle открыл Default Mode Network&nbsp;— сеть мозга, которая тратит до&nbsp;20% энергии на&nbsp;бесконечный внутренний монолог: сомнения, тревогу, прокрутку решений.</p>
-      <p>Целенаправленная практика физически меняет структуру мозга&nbsp;— это видно на&nbsp;МРТ через 4–8&nbsp;недель.</p>
-      <p>Ваше тело знает правильный ответ за&nbsp;2‑5&nbsp;секунд до&nbsp;того, как ум&nbsp;начинает анализировать. Техника программирования восстанавливает эту связь.</p>
+      <p>Когда вас в&nbsp;детстве одёрнули за&nbsp;«неправильное» решение, мозг запомнил: решать самому&nbsp;— опасно. С&nbsp;тех пор каждый раз, когда вы&nbsp;хотите что-то выбрать, миндалина включает тревогу.</p>
+      <p>Default Mode Network&nbsp;— сеть мозга, которая тратит до&nbsp;20% энергии на&nbsp;внутренний монолог: «А&nbsp;вдруг ошибусь?», «Что скажут?», «Может, спросить кого-то?»</p>
+      <p>Хорошая новость: нейропластичность. Мозг можно перенастроить. МРТ показывает изменения уже через 4–8&nbsp;недель практики.</p>
       <div class="brain-stats" id="brainStats">
         <div><div class="b-row"><span>Префронтальная кора</span><span class="val">↑ +15%</span></div><div class="b-bar"><div class="b-fill g" style="--w:75%"></div></div></div>
         <div><div class="b-row"><span>Островковая кора (интероцепция)</span><span class="val">↑ +22%</span></div><div class="b-bar"><div class="b-fill g" style="--w:88%"></div></div></div>
@@ -559,42 +751,90 @@ footer{border-top:1px solid var(--border);padding:32px;text-align:center}
   </div>
 </section>
 
-<!-- FREQUENCY -->
-<section class="frequency-section">
-  <div class="frequency-inner">
-    <div class="frequency-visual reveal">
-      <div class="wave-container">
-        <svg class="wave-svg" viewBox="0 0 400 200">
-          <defs>
-            <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" style="stop-color:#3B7A5A;stop-opacity:0.3"/>
-              <stop offset="50%" style="stop-color:#3B7A5A;stop-opacity:1"/>
-              <stop offset="100%" style="stop-color:#3B7A5A;stop-opacity:0.3"/>
-            </linearGradient>
-          </defs>
-          <path d="M0 100 Q50 50 100 100 T200 100 T300 100 T400 100" fill="none" stroke="url(#waveGrad)" stroke-width="3">
-            <animate attributeName="d" dur="2s" repeatCount="indefinite" values="M0 100 Q50 50 100 100 T200 100 T300 100 T400 100;M0 100 Q50 150 100 100 T200 100 T300 100 T400 100;M0 100 Q50 50 100 100 T200 100 T300 100 T400 100"/>
-          </path>
-          <path d="M0 100 Q50 70 100 100 T200 100 T300 100 T400 100" fill="none" stroke="#C49A52" stroke-width="2" opacity="0.6">
-            <animate attributeName="d" dur="3s" repeatCount="indefinite" values="M0 100 Q50 70 100 100 T200 100 T300 100 T400 100;M0 100 Q50 130 100 100 T200 100 T300 100 T400 100;M0 100 Q50 70 100 100 T200 100 T300 100 T400 100"/>
-          </path>
-        </svg>
-        <div class="wave-info">
-          <div class="wave-stat"><b>432 Hz</b><small>Частота гармонии</small></div>
-          <div class="wave-stat"><b>7.83 Hz</b><small>Резонанс Шумана</small></div>
-          <div class="wave-stat"><b>θ-волны</b><small>4-8 Hz</small></div>
-          <div class="wave-stat"><b>α-волны</b><small>8-12 Hz</small></div>
+<!-- INDIVIDUAL PRACTICE -->
+<section class="practice-section">
+  <div class="practice-inner">
+    <div class="practice-content reveal">
+      <div class="section-tag">Только в VIP</div>
+      <h3>Индивидуальная практика <span>программирования мозга</span></h3>
+      <p class="practice-lead">Это не&nbsp;шаблон. Не&nbsp;запись. Не&nbsp;«делай как все». Это практика, которую Дарья создаёт персонально под вас.</p>
+      
+      <div class="practice-steps">
+        <div class="practice-step">
+          <div class="step-marker">1</div>
+          <div class="step-content">
+            <h4>Диагностика паттерна</h4>
+            <p>Дарья находит вашу точку блокировки&nbsp;— момент, когда вы&nbsp;перестали доверять себе. У&nbsp;каждого он&nbsp;свой</p>
+          </div>
+        </div>
+        <div class="practice-step">
+          <div class="step-marker">2</div>
+          <div class="step-content">
+            <h4>Персональный протокол</h4>
+            <p>Не&nbsp;общая техника, а&nbsp;протокол именно для вашего типа блокировки. Работает точечно, без лишнего</p>
+          </div>
+        </div>
+        <div class="practice-step">
+          <div class="step-marker">3</div>
+          <div class="step-content">
+            <h4>Перепрограммирование</h4>
+            <p>Замена старых нейронных связей на&nbsp;новые. Целенаправленная работа с&nbsp;конкретной точкой блокировки</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="frequency-content reveal">
-      <h3>Музыка определённой <span>частоты</span></h3>
-      <p>В&nbsp;VIP-формате вы&nbsp;получите персональную практику программирования мозга под специально подобранную музыку определённой частоты.</p>
-      <p>Определённые звуковые частоты синхронизируют работу полушарий мозга и&nbsp;создают оптимальное состояние для перепрограммирования нейронных связей.</p>
-      <div class="frequency-list">
-        <div class="frequency-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><p>Бинауральные ритмы для синхронизации полушарий</p></div>
-        <div class="frequency-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><p>Изохронные тоны для глубокого погружения</p></div>
-        <div class="frequency-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><p>Персональный подбор частот под ваш запрос</p></div>
+    <div class="practice-visual reveal">
+      <div class="neural-transform">
+        <svg viewBox="0 0 300 200">
+          <!-- Старые хаотичные связи (красные, затухают) -->
+          <g class="old-connections">
+            <path d="M50 40 Q80 80 60 120 Q40 160 70 180" stroke="#B85C5C" stroke-width="2" fill="none" opacity="0.4">
+              <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3s" repeatCount="indefinite"/>
+            </path>
+            <path d="M80 30 Q100 70 90 110 Q80 150 100 170" stroke="#B85C5C" stroke-width="2" fill="none" opacity="0.3">
+              <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3.5s" repeatCount="indefinite"/>
+            </path>
+            <path d="M30 80 Q60 90 50 130 Q40 170 60 190" stroke="#B85C5C" stroke-width="1.5" fill="none" opacity="0.3">
+              <animate attributeName="opacity" values="0.3;0.05;0.3" dur="4s" repeatCount="indefinite"/>
+            </path>
+          </g>
+          
+          <!-- Новые чёткие связи (зелёные, появляются) -->
+          <g class="new-connections">
+            <path d="M200 30 L230 80 L210 130 L240 180" stroke="#3B7A5A" stroke-width="3" fill="none" stroke-dasharray="150" stroke-dashoffset="150">
+              <animate attributeName="stroke-dashoffset" values="150;0;0" dur="3s" repeatCount="indefinite"/>
+            </path>
+            <path d="M220 20 L250 70 L230 120 L260 170" stroke="#3B7A5A" stroke-width="2.5" fill="none" stroke-dasharray="150" stroke-dashoffset="150">
+              <animate attributeName="stroke-dashoffset" values="150;0;0" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+            </path>
+            <path d="M240 40 L270 90 L250 140 L280 190" stroke="#3B7A5A" stroke-width="2" fill="none" stroke-dasharray="150" stroke-dashoffset="150">
+              <animate attributeName="stroke-dashoffset" values="150;0;0" dur="3s" begin="1s" repeatCount="indefinite"/>
+            </path>
+          </g>
+          
+          <!-- Центральная стрелка трансформации -->
+          <g class="transform-arrow">
+            <path d="M120 100 L180 100" stroke="#C49A52" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+            <defs>
+              <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#C49A52"/>
+              </marker>
+            </defs>
+          </g>
+          
+          <!-- Подписи -->
+          <text x="60" y="15" fill="#B85C5C" font-size="11" font-weight="600">Хаос</text>
+          <text x="220" y="15" fill="#3B7A5A" font-size="11" font-weight="600">Ясность</text>
+          
+          <!-- Пульсирующие точки на новых связях -->
+          <circle cx="230" cy="80" r="4" fill="#3B7A5A">
+            <animate attributeName="r" values="3;6;3" dur="1.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="210" cy="130" r="4" fill="#3B7A5A">
+            <animate attributeName="r" values="3;6;3" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+        <p class="transform-caption">Хаотичные связи → Чёткие паттерны доверия</p>
       </div>
     </div>
   </div>
@@ -645,6 +885,63 @@ footer{border-top:1px solid var(--border);padding:32px;text-align:center}
   </div>
 </section>
 
+<!-- VIP EXPERIENCE -->
+<section class="vip-section">
+  <div class="vip-inner">
+    <div class="vip-content reveal">
+      <div class="section-tag">VIP-формат</div>
+      <h2>Глубинная трансформация</h2>
+      <p class="vip-lead">Для тех, кто готов к&nbsp;настоящей работе с&nbsp;собой, а&nbsp;не&nbsp;просто «послушать информацию»</p>
+      <div class="vip-features">
+        <div class="vip-feature">
+          <div class="vip-feature-icon">🔮</div>
+          <div>
+            <h4>Разбор по&nbsp;Human Design</h4>
+            <p>Ваша персональная карта принятия решений. Как именно ваш тип должен принимать решения&nbsp;— не&nbsp;по&nbsp;книжкам, а&nbsp;по&nbsp;вашей уникальной конфигурации</p>
+          </div>
+        </div>
+        <div class="vip-feature">
+          <div class="vip-feature-icon">🧠</div>
+          <div>
+            <h4>Индивидуальная практика программирования мозга</h4>
+            <p>Не&nbsp;шаблон, а&nbsp;практика, созданная под вас. Дарья анализирует ваши паттерны, находит точку блокировки и&nbsp;создаёт персональный протокол перепрограммирования</p>
+          </div>
+        </div>
+        <div class="vip-feature">
+          <div class="vip-feature-icon">💬</div>
+          <div>
+            <h4>30&nbsp;дней личного контакта</h4>
+            <p>Прямой доступ к&nbsp;Дарье в&nbsp;личном чате. Когда всплывают старые паттерны&nbsp;— есть кому написать. Это меняет всё</p>
+          </div>
+        </div>
+        <div class="vip-feature">
+          <div class="vip-feature-icon">🎁</div>
+          <div>
+            <h4>Все программы в&nbsp;подарок</h4>
+            <p>«Протокол остановки ума», «Код денег», «За&nbsp;пределами заболеваний»&nbsp;— полный доступ ко&nbsp;всей библиотеке</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="vip-visual reveal">
+      <div class="vip-numbers">
+        <div class="vip-number">
+          <b>4</b>
+          <span>персональные сессии</span>
+        </div>
+        <div class="vip-number">
+          <b>30</b>
+          <span>дней личного доступа</span>
+        </div>
+        <div class="vip-number">
+          <b>3</b>
+          <span>программы в&nbsp;подарок</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="section" id="pricing">
   <div class="section-header reveal"><div class="section-tag">Тарифы</div><h2 class="section-title">Два формата участия</h2><p class="section-desc">Старт 22&nbsp;февраля</p></div>
@@ -665,20 +962,20 @@ footer{border-top:1px solid var(--border);padding:32px;text-align:center}
       <a href="#" class="btn-primary">Записаться</a>
     </div>
     <div class="pricing-card vip reveal">
-      <div class="pricing-badge">Личная работа</div>
+      <div class="pricing-badge">Глубокая работа</div>
       <div class="pricing-name">VIP-сопровождение</div>
-      <div class="pricing-desc">Персональная работа с&nbsp;Дарьей — 1&nbsp;месяц</div>
+      <div class="pricing-desc">Персональная трансформация с&nbsp;Дарьей — 1&nbsp;месяц</div>
       <div class="pricing-price">80&nbsp;000 <small>₽</small></div>
       <div class="pricing-period">один раз — доступ навсегда</div>
       <div class="pricing-features">
         <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Всё из&nbsp;базовой программы</div>
         <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>4&nbsp;персональные сессии 1&nbsp;на&nbsp;1</strong></div>
-        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Разбор по&nbsp;Human Design</strong></div>
-        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Персональная практика программирования под музыку определённой частоты</strong></div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Глубинный разбор по&nbsp;Human Design</strong></div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Индивидуальная практика программирования мозга</strong></div>
         <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Личный чат с&nbsp;Дарьей — 30&nbsp;дней</strong></div>
-        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Доступ ко&nbsp;всем программам Дарьи</strong></div>
+        <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong>Доступ ко&nbsp;всем программам</strong></div>
       </div>
-      <a href="#" class="btn-primary btn-gold">Подать заявку</a>
+      <a href="#" class="btn-primary btn-gold">Записаться</a>
     </div>
   </div>
 </section>
@@ -701,18 +998,53 @@ footer{border-top:1px solid var(--border);padding:32px;text-align:center}
 
 <!-- CTA -->
 <section class="cta-section">
-  <h2>Готовы начать слышать себя?</h2>
+  <div class="cta-quote">«Внутренний авторитет&nbsp;— это не&nbsp;черта характера. Это право, которое можно вернуть»</div>
+  <h2>Готовы вернуть себе право решать?</h2>
   <p>Старт 22&nbsp;февраля. Количество мест ограничено.</p>
   <a href="#pricing" class="btn-large">Записаться на&nbsp;программу</a>
 </section>
 
-<footer>
-  <div class="ft-links">
-    <a href="https://t.me/TheBodyMindCode_support" target="_blank">Поддержка</a>
-    <a href="https://instagram.com/thebodymindcode" target="_blank">Instagram</a>
-    <a href="https://thebodymindcode.github.io/shop/" target="_blank">Все программы</a>
+<footer class="premium-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="logo-dot">●</span> Архитектура сознания</div>
+      <p class="footer-tagline">Нейронаука для тех, кто готов меняться</p>
+      <div class="footer-social">
+        <a href="https://t.me/thebodymindcode" target="_blank" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+        </a>
+        <a href="https://instagram.com/thebodymindcode" target="_blank" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <h4>Программа</h4>
+        <a href="#program">Что будет</a>
+        <a href="#author">Об авторе</a>
+        <a href="#pricing">Тарифы</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <a href="https://t.me/TheBodyMindCode_support" target="_blank">Поддержка в Telegram</a>
+        <a href="mailto:support@thebodymindcode.com">Email</a>
+      </div>
+      <div class="footer-col">
+        <h4>Другие программы</h4>
+        <a href="https://thebodymindcode.github.io/shop/" target="_blank">Протокол остановки ума</a>
+        <a href="https://thebodymindcode.github.io/shop/" target="_blank">Код денег</a>
+        <a href="https://thebodymindcode.github.io/shop/" target="_blank">Все программы →</a>
+      </div>
+    </div>
   </div>
-  <p class="ft-copy">© 2026 Архитектура сознания. ИП&nbsp;Ростовцева Дарья Валерьевна · ИНН: 241103415641</p>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p>© 2026 Архитектура сознания</p>
+      <p>ИП Ростовцева Дарья Валерьевна · ИНН: 241103415641</p>
+    </div>
+  </div>
 </footer>
 
 <script>
