@@ -10,7 +10,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#111;-webkit-font-smoothing:antialiased;line-height:1.6}
+body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#111;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;word-wrap:break-word;overflow-wrap:break-word}
 
 :root{
   --white:#FFFFFF;
@@ -377,9 +377,144 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
 .d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}
 
 @media(max-width:768px){
+  /* GLOBAL */
+  html,body{overflow-x:hidden!important;width:100%!important}
+  *{max-width:100%!important;box-sizing:border-box!important}
+  img,svg,video{max-width:100%!important;height:auto!important}
+
+  /* NAV - minimal top bar */
+  .nav-c{padding:0 12px!important;height:48px!important}
   .nav-r a:not(.cta){display:none}
-  .section{padding:0 20px 60px}
-  .hero{padding:40px 20px 24px}
+  .brand{font-size:.78rem!important}
+  .nav-r .cta{padding:7px 14px!important;font-size:.68rem!important;border-radius:8px!important}
+
+  /* HERO */
+  .hero{padding:32px 16px 20px!important}
+  .hero h1{font-size:1.8rem!important}
+  .hero-sub{font-size:.88rem!important}
+  .hero-tagline{font-size:1.1rem!important}
+  .hero-stats{gap:20px!important}
+  .hero-stat b{font-size:1.3rem!important}
+  .hero-stat small{font-size:.65rem!important}
+  .hero-badge{font-size:.62rem!important;padding:5px 12px!important}
+  .hero-author{font-size:.82rem!important}
+  .trust-bar{padding:0 16px 28px!important;gap:8px!important}
+  .trust-pill{font-size:.65rem!important;padding:6px 10px!important}
+
+  /* MAIN QUOTE */
+  .main-quote{padding:40px 16px 50px!important}
+  .quote-line{font-size:1.2rem!important}
+  .quote-line.highlight{font-size:1.4rem!important}
+
+  /* SECTIONS */
+  .section{padding:0 16px 48px!important}
+  .section-header{margin-bottom:32px!important}
+  .section-title{font-size:1.4rem!important}
+  .section-tag{font-size:.6rem!important}
+
+  /* AUTHORITY */
+  .authority-section{padding:48px 16px!important}
+  .authority-inner{grid-template-columns:1fr!important;gap:28px!important}
+  .authority-content h2{font-size:1.3rem!important}
+  .authority-text p{font-size:.88rem!important}
+  .authority-diagram{transform:scale(.7)!important}
+
+  /* RECOGNITION */
+  .recog-grid{grid-template-columns:1fr!important}
+  .recog-card{padding:20px 16px!important}
+
+  /* BRAIN */
+  .brain-section{padding:48px 16px!important}
+  .brain-inner{grid-template-columns:1fr!important;gap:24px!important}
+  .b-row{font-size:.8rem!important}
+
+  /* TRANSFORM */
+  .transform-grid{grid-template-columns:1fr!important}
+  .transform-card{padding:24px 16px!important}
+
+  /* STEPS */
+  .steps-grid{grid-template-columns:repeat(2,1fr)!important;gap:12px!important}
+  .steps-grid::before{display:none!important}
+
+  /* TECHNIQUES */
+  .technique-section{padding:48px 16px!important}
+  .technique-grid{grid-template-columns:1fr!important;max-width:100%!important}
+  .technique-card{padding:28px 18px!important}
+
+  /* SCIENCE */
+  .science-grid{grid-template-columns:1fr!important}
+  .science-card{padding:20px 16px!important}
+
+  /* FREQUENCY */
+  .frequency-section{padding:48px 16px!important}
+  .frequency-inner{grid-template-columns:1fr!important;gap:24px!important}
+  .wave-container{padding:24px 16px!important}
+  .wave-info{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .wave-item{padding:10px!important}
+
+  /* ABOUT */
+  .about-section{padding:48px 16px!important}
+  .about-box{grid-template-columns:1fr!important;text-align:center!important;padding:24px 16px!important;gap:20px!important}
+  .about-photo-img{margin:0 auto!important}
+  .about-stats{justify-content:center!important}
+  .about-cred{font-size:.72rem!important}
+
+  /* BENEFITS */
+  .benefits-grid{grid-template-columns:1fr!important}
+  .benefit-card{padding:18px 14px!important}
+
+  /* VIP */
+  .vip-section{padding:48px 16px!important}
+  .vip-inner{grid-template-columns:1fr!important;gap:24px!important}
+  .vip-badge{font-size:.55rem!important}
+
+  /* PRICING */
+  .pricing-section{padding:48px 16px!important}
+  .pricing-grid{grid-template-columns:1fr!important}
+  .pricing-card{padding:28px 18px!important}
+  .pricing-card h3{font-size:1.2rem!important}
+  .pricing-amount{font-size:2rem!important}
+  .pricing-features li{font-size:.84rem!important}
+  .pricing-btn{font-size:.72rem!important;padding:12px 20px!important}
+
+  /* COSTUMES (dark section) */
+  #costumesGrid{grid-template-columns:1fr!important}
+  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns: repeat(3, 1fr)"]{grid-template-columns:1fr!important}
+  [style*="padding:24px 32px"]{padding:16px!important}
+  [style*="padding:40px 32px"]{padding:24px 16px!important}
+  [style*="padding: 48px"]{padding:24px 16px!important}
+
+  /* INLINE STEP GRIDS (80px 1fr) */
+  [style*="grid-template-columns:80px"]{grid-template-columns:1fr!important;text-align:center!important}
+  [style*="grid-template-columns: 80px"]{grid-template-columns:1fr!important;text-align:center!important}
+
+  /* FAQ */
+  .fq{margin-bottom:8px!important}
+  .fq-q{padding:14px 16px!important;font-size:.9rem!important}
+  .fq-a{font-size:.84rem!important}
+
+  /* FOOTER */
+  .footer{padding:40px 16px 20px!important}
+  .footer-inner{grid-template-columns:1fr!important;gap:24px!important}
+  .footer-nav{grid-template-columns:1fr!important}
+  .footer-bottom-inner{flex-direction:column!important;gap:8px!important;text-align:center!important}
+
+  /* STICKY BOTTOM CTA */
+  .sticky-bot{display:block!important}
+}
+
+/* STICKY BOTTOM CTA */
+.sticky-bot{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;
+  background:rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  padding:10px 16px;box-shadow:0 -2px 16px rgba(0,0,0,.08);
+  border-top:1px solid rgba(59,122,90,.15);text-align:center;
+}
+.sticky-bot a{
+  display:block;padding:11px;background:var(--sage);color:#fff;
+  font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;border-radius:10px;
 }
 
 #costumesGrid > div:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.15)!important;box-shadow:0 24px 48px rgba(0,0,0,.3)}
@@ -1059,7 +1194,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><div class="sticky-bot" id="stickyBot"><a href="https://payform.ru/p7aGdbG/">Записаться на курс</a></div>
+
+<script>
 // Reveal animations on scroll
 const obs = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -1101,6 +1238,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const target = document.querySelector(href);
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+});
+
+// Sticky bottom CTA
+var sb=document.getElementById('stickyBot');
+if(sb)window.addEventListener('scroll',function(){
+  var y=window.scrollY,hH=document.querySelector('.hero-wrapper')?document.querySelector('.hero-wrapper').offsetHeight:400,
+  dH=document.documentElement.scrollHeight,wH=window.innerHeight;
+  sb.style.display=(y>hH&&y<dH-wH-200)?'block':'';
 });
 </script>
 </body>
